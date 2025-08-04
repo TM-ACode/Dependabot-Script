@@ -61,6 +61,10 @@ source = Dependabot::Source.new(
 ##############################
 # Fetch the dependency files #
 ##############################
+# Fetch the dependency files #
+##############################
+# Fetch the dependency files #
+##############################
 fetcher = Dependabot::FileFetchers.for_package_manager(package_manager).
           new(source: source, credentials: credentials)
 
@@ -68,7 +72,9 @@ files = fetcher.files
 commit = fetcher.commit
 
 ##############################
+##############################
 # Parse the dependency files #
+##############################
 ##############################
 parser = Dependabot::FileParsers.for_package_manager(package_manager).new(
   dependency_files: files,

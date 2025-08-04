@@ -1,9 +1,11 @@
 # This script is designed to be copied into an interactive Ruby session, to
 # give you an idea of how the different classes in Dependabot Core fit together.
 #
+#
 # It's used regularly by the Dependabot team to manually debug issues, so should
 # always be up-to-date.
-
+#
+#
 require "dependabot/file_fetchers"
 require "dependabot/file_parsers"
 require "dependabot/update_checkers"
@@ -73,9 +75,11 @@ commit = fetcher.commit
 
 ##############################
 ##############################
+#########################################
 # Parse the dependency files #
 ##############################
 ##############################
+#########################################
 parser = Dependabot::FileParsers.for_package_manager(package_manager).new(
   dependency_files: files,
   source: source,
@@ -86,7 +90,9 @@ dependencies = parser.parse
 dep = dependencies.find { |d| d.name == dependency_name }
 
 #########################################
+#########################################
 # Get update details for the dependency #
+#########################################
 #########################################
 checker = Dependabot::UpdateCheckers.for_package_manager(package_manager).new(
   dependency: dep,
@@ -99,7 +105,9 @@ checker.can_update?(requirements_to_unlock: :own)
 updated_deps = checker.updated_dependencies(requirements_to_unlock: :own)
 
 #####################################
+#####################################
 # Generate updated dependency files #
+#####################################
 #####################################
 updater = Dependabot::FileUpdaters.for_package_manager(package_manager).new(
   dependencies: updated_deps,
